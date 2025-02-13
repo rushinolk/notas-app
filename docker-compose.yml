@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql  
+    networks:
+      - notas-network
+
+  backend:
+    build: ./backend
+    environment:
+      DB_USER: ${DB_USER}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - notas-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - notas-network
+
+volumes:
+  postgres_data:
+
+networks:
+  notas-network:
