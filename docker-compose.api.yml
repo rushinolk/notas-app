@@ -1,21 +1,21 @@
-#gitversion: '3.8'
-
 services:
-  
-  appi:
-    
+  api:
     ports:
       - 3001:3001
-    
     container_name: aws_api
     environment:
-          - DB_USERNAME=postgres #${DB_USERNAME}
-          - DB_PASSWORD=Aula*Infra #${DB_PASSWORD}
-          - DB_DATABASE=aws_db # ${DB_DATABASE}
-          - DB_HOST=aws-db-ativ.csjlwegrg9nd.us-east-1.rds.amazonaws.com
-    
-    
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Aula*Infra
+      - DB_DATABASE=aws_db
+      - DB_HOST=aws-db-ativ.csjlwegrg9nd.us-east-1.rds.amazonaws.com
     build:
-      context: ./backend
+      context: ./backend  
       dockerfile: Dockerfile
- 
+
+  frontend:
+    ports:
+      - 3000:3000  
+    container_name: aws_frontend
+    build:
+      context: ./frontend  
+      dockerfile: Dockerfile
