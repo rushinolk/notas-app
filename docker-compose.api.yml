@@ -1,0 +1,21 @@
+#version: '3.9'
+
+services:
+  
+  appi:
+    
+    ports:
+      - 3001:3001
+    
+    container_name: aws_api
+    environment:
+          - DB_USERNAME=postgres #${DB_USERNAME}
+          - DB_PASSWORD=Aula*Infra #${DB_PASSWORD}
+          - DB_DATABASE=aws_db # ${DB_DATABASE}
+          - DB_HOST=aws-db-ativ.csjlwegrg9nd.us-east-1.rds.amazonaws.com
+    
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+ 
