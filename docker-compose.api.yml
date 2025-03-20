@@ -16,6 +16,6 @@ services:
     
     
     build:
-      context: .
+      context: .backend
       dockerfile: Dockerfile
  
