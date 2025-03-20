@@ -14,7 +14,7 @@ services:
 
   frontend:
     ports:
-      - 3000:3000  
+      - 3000:80  
     container_name: aws_frontend
     build:
       context: ./frontend  
