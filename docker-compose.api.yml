@@ -1,7 +1,7 @@
 services:
   api:
     ports:
-      - 3001:3001
+      - 3000:3000
     container_name: aws_api
     environment:
       - DB_USERNAME=postgres
