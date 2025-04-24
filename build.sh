@@ -6,11 +6,11 @@ REGION="us-east-1"
 aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
 
 
-docker build -t $REPO_NAME:backend -f backend/Dockerfile . 
+docker build -t $REPO_NAME:backend -f notas-app/frontend/Dockerfile .
 docker tag $REPO_NAME:backend $ECR_REGISTRY/$REPO_NAME:backend
 docker push $ECR_REGISTRY/$REPO_NAME:backend 
 
-docker build -t $REPO_NAME:frontend frontend/Dockerfile . 
+docker build -t $REPO_NAME:frontend -f notas-app/backend/Dockerfile .
 docker tag $REPO_NAME:frontend $ECR_REGISTRY/$REPO_NAME:frontend 
 docker push $ECR_REGISTRY/$REPO_NAME:frontend 
 
