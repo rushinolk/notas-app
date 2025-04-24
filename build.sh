@@ -13,3 +13,4 @@ docker push $ECR_REGISTRY/$REPO_NAME:backend
 docker build -t $REPO_NAME:frontend frontend/
 docker tag $REPO_NAME:frontend $ECR_REGISTRY/$REPO_NAME:frontend
 docker push $ECR_REGISTRY/$REPO_NAME:frontend
+
