@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const API_BASE_URL = 'http://backend:3000'; // Alterado para usar o nome do serviço no compose
   const noteForm = document.getElementById('note-form');
   const notesList = document.getElementById('notes-list');
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch('http://localhost:3000/notes');
+      const response = await fetch(`${API_BASE_URL}/notes`);
       if (!response.ok) {
         throw new Error('Erro ao buscar notas');
       }
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('content').value;
 
     try {
-      const response = await fetch('http://localhost:3000/notes', {
+      const response = await fetch(`${API_BASE_URL}/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, content }),
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = prompt('Novo conteúdo:');
 
     try {
-      const response = await fetch(`http://localhost:3000/notes/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/notes/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, content }),
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.deleteNote = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/notes/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/notes/${id}`, {
         method: 'DELETE',
       });
 

@@ -5,11 +5,15 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: '*', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 app.use(express.json());
 
+// Health check endpoint (obrigatório para ECS)
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 app.get('/notes', async (req, res) => {
   try {
@@ -20,7 +24,6 @@ app.get('/notes', async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar notas' });
   }
 });
-
 
 app.post('/notes', async (req, res) => {
   const { title, content } = req.body;
@@ -36,7 +39,6 @@ app.post('/notes', async (req, res) => {
   }
 });
 
-
 app.put('/notes/:id', async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;
@@ -51,7 +53,6 @@ app.put('/notes/:id', async (req, res) => {
     res.status(500).json({ error: 'Erro ao editar nota' });
   }
 });
-
 
 app.delete('/notes/:id', async (req, res) => {
   const { id } = req.params;
