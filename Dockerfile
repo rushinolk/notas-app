@@ -1,15 +1,15 @@
 # Backend - Node.js
 FROM node:14 AS backend
 WORKDIR /app
-COPY backend/package*.json ./  # Alterado para o caminho correto
+COPY backend/package*.json ./ 
 RUN npm install
-COPY backend/ ./  # Alterado para o caminho correto
+COPY backend/ ./  
 EXPOSE 3000
 CMD ["node", "index.js"]
 
 # Frontend - Nginx
 FROM nginx:alpine AS frontend
-COPY frontend/ /usr/share/nginx/html  # Alterado para o caminho correto
+COPY . /usr/share/nginx/html
 EXPOSE 80
 
 # Estágio Final
