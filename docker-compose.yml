@@ -6,6 +6,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_PORT: 5432 
       POSTGRES_DB: notas
       POSTGRES_HOST: da-arthur.csjlwegrg9nd.us-east-1.rds.amazonaws.com
     volumes:
